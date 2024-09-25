@@ -1,4 +1,4 @@
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
     /**
      * Header toggle
      */
@@ -58,4 +58,30 @@
 
     window.addEventListener("load", toggleScrollTop);
     document.addEventListener("scroll", toggleScrollTop);
-})();
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+                behavior: "smooth",
+            });
+        });
+    });
+});
+function sendMail() {
+    var params = {
+        name: document.getElementById("name-field").value,
+        email: document.getElementById("email-field").value,
+        subject: document.getElementById("subject-field").value,
+        message: document.getElementById("message-field").value,
+    };
+    const serviceId = "service_j9q2sdi";
+    const templateId = "template_9u6glbt";
+    emailjs.send(serviceId, templateId, params).then((res) => {
+        document.getElementById("name-field").value = "";
+        document.getElementById("email-field").value = "";
+        document.getElementById("subject-field").value = "";
+        document.getElementById("message-field").value = "";
+        msgbox.innerText = "Form Submitted Successfully";
+    });
+}

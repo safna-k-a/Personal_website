@@ -228,6 +228,7 @@
                                             type="submit"
                                             name="submit"
                                             value="Send Message"
+                                            class="btn btn-primary"
                                         />
                                         <div class="message"></div>
                                     </div>
@@ -336,9 +337,20 @@
                 }
                 if (userflag && emailflag && sbjflag && msgflag) {
                     msgbox = document.querySelector(".message");
-                    msgbox.innerText = "Form Submitted Successfully";
+                    sendMail();
                 }
             };
+        </script>
+        <script
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        ></script>
+        <script type="text/javascript">
+            (function () {
+                emailjs.init({
+                    publicKey: "29rAewEr7LjYw8FJO",
+                });
+            })();
         </script>
     </body>
 </html>
